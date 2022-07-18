@@ -103,8 +103,10 @@ SELECT COUNT(conceito) AS quantidade_de_projetos FROM entregas
 	WHERE conceito = 'Ainda não está pronto' OR conceito = 'chegando lá';
 
 -- Query 4
-SELECT turmas_id AS turma, nome AS Nome_dos_alunos FROM alunos
-	INNER JOIN entregas ON alunos.cpf = entregas.alunos_cpf
-    WHERE conceito = 'Mais que pronto';
 
+SELECT turmas_id AS turma, count(conceito) AS quantidade_de_projetos FROM alunos
+	INNER JOIN entregas ON alunos.CPF = entregas.alunos_cpf
+    WHERE conceito = 'Mais que pronto'
+    GROUP BY turmas_id
+    ORDER BY quantidade_de_projetos DESC;
 
